@@ -18,6 +18,7 @@ show_help() {
     echo "  -G, --generate_key    Specify "yes" or "no" to generate a pass key for the cert. Be sure your app supports this."
     echo "  -U, --username        The user that will authenticate against the certificate server"
     echo "  -P, --password        The password used for --username"
+    echo "  -a, --chain           Will you need a full chain for this cert? (yes/no)"
     echo ""
     echo "Multiple fields can be specified, fields left unspecified will prompt for input"
     echo "example: ./request_cer.sh --country US --state UNK --city Port Wenn --organization "Some Company" --org_unit IT "
@@ -90,6 +91,11 @@ while [[ $# -gt 0 ]]; do
       ;;
     -P|--password)
       PASSWORD="$2"
+      shift # past argument
+      shift # past value
+      ;;
+    -a|--chain)
+      CHAIN="$2"
       shift # past argument
       shift # past value
       ;;
